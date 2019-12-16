@@ -1,6 +1,9 @@
 from flask import Flask, request
 from selenium import webdriver
 
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
 app = Flask(__name__)
 
 
@@ -9,10 +12,12 @@ def hello_world():
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
     p_audience = request.args.get('audience')
-    chromedriver = r'C:\Users\Vova\Documents\chromedriver\chromedriver.exe'
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    browser = webdriver.Chrome(executable_path=chromedriver, chrome_options=options)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.binary_location = GOOGLE_CHROME_PATH
+    chrome_options.add_argument('headless')
+    browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
 
     browser.get('https://lk.ugatu.su/audience')
     building = browser.find_element_by_id('id_building')
