@@ -18,8 +18,6 @@ def hello_world():
     chrome_options.binary_location = GOOGLE_CHROME_PATH
     chrome_options.add_argument('headless')
     browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
-
-
     browser.get('https://lk.ugatu.su/audience')
     building = browser.find_element_by_id('id_building')
     building.send_keys(p_building)
