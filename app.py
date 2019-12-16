@@ -12,6 +12,7 @@ def hello_world():
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
     p_audience = request.args.get('audience')
+    p_date = request.args.get('date')
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
@@ -27,6 +28,8 @@ def hello_world():
     audit.send_keys(p_audience)
     tmp = browser.find_element_by_xpath("//ul[@id='id_ScheduleType']/li[3]")
     tmp.click()
+    date = browser.find_element_by_name('date')
+    date.send_keys(p_date)
     but = browser.find_element_by_name('view')
     but.click()
     result = browser.page_source
