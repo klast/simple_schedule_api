@@ -1,8 +1,9 @@
-from flask import Flask, request
+from flask import Flask, request, send_file
 from selenium import webdriver
 import pandas
 from bs4 import BeautifulSoup
 import requests
+import io
 
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -125,8 +126,8 @@ def hello_parse_to_table():
     return df.to_html()
 
 
-@app.route('/parse_to_json')
-def hello_parse_to_json():
+@app.route('/parse_to_excel')
+def hello_parse_to_excel():
     base_url = r'https://kurstestspelevova.herokuapp.com/'
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
@@ -206,7 +207,13 @@ def hello_parse_to_json():
 
     df = pandas.DataFrame(schedule,
                           columns=['name', 'time', 'action_name', 'action_groups', 'action_type', 'action_teacher'])
-    return df.to_json(orient='table')
+    strIO = io.BytesIO()
+    excel_writer = pandas.ExcelWriter(strIO, engine="xlsxwriter")
+    df.to_excel(excel_writer, sheet_name='sheet1')
+    excel_writer.save()
+    excel_data = strIO.getvalue()
+    strIO.seek(0)
+    return send_file(strIO, attachment_filename='test.xlsx', as_attachment=True)
 
 
 if __name__ == '__main__':
