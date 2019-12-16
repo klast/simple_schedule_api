@@ -29,7 +29,8 @@ def hello_world():
     tmp.click()
     but = browser.find_element_by_name('view')
     but.click()
-    result = browser.page_source
+    result = browser.page_source.copy()
+    browser.close()
     return result
 
 
