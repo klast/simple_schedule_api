@@ -135,7 +135,7 @@ def hello_world():
 
 @app.route('/parse_to_table')
 def parse_to_table():
-    base_url = r'https://kurstestspelevova.herokuapp.com/'
+    base_url = r'https://kurstestspelevova.herokuapp.com/parse_to_table'
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
     p_audience = request.args.get('audience')
@@ -153,8 +153,7 @@ def parse_to_table():
 
 @app.route('/parse_to_excel')
 def parse_to_excel():
-    base_url = r'https://kurstestspelevova.herokuapp.com/'
-    base_url = r'https://kurstestspelevova.herokuapp.com/'
+    base_url = r'https://kurstestspelevova.herokuapp.com/parse_to_excel'
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
     p_audience = request.args.get('audience')
@@ -178,7 +177,7 @@ def parse_to_excel():
 
 @app.route('/parse_to_json')
 def parse_to_json():
-    base_url = r'https://kurstestspelevova.herokuapp.com/'
+    base_url = r'https://kurstestspelevova.herokuapp.com/parse_to_json'
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
     p_audience = request.args.get('audience')
