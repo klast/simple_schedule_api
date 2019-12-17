@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>
+        simple api faq page
+    </h1>
+    <h2>
+        Параметры для любых запросов:
+    </h2>
+    <ul>
+        <li>
+            <p>building - Здание</p>
+        </li>
+        <li>
+            <p>floor - Этаж</p>
+        </li>
+        <li>
+            <p>audience - Аудитория</p>
+        </li>
+        <li>
+            <p>date - Дата в формате dd.mm.yyyy</p>
+        </li>
+    </ul>
+    <h2>Возможные запросы:</h2>
+
+    <ul>
+        <li>
+            <p>Вернуть страницу, <b>как на расписании УГАТУ, но без css стилей</b>, с выбранным зданием, этажом, аудиторией и датой - <b>'/schedule'</b></p>
+            <p>Пример <a href="https://kurstestspelevova.herokuapp.com/schedule?&building=1&floor=4&audience=1-409&date=17.12.2019">https://kurstestspelevova.herokuapp.com/schedule?&building=1&floor=4&audience=1-409&date=17.12.2019</a></p>
+        </li>
+        <li>
+            <p>Вернуть страницу с выбранным зданием, этажом, аудиторией и датой, распарсенную, и выгруженную через pandas в html - <b>'/parse_to_table'</b></p>
+            <p>Пример <a href="https://kurstestspelevova.herokuapp.com/parse_to_table?&building=1&floor=4&audience=1-409&date=17.12.2019">https://kurstestspelevova.herokuapp.com/parse_to_table?&building=1&floor=4&audience=1-409&date=17.12.2019</a></p>
+        </li>
+        <li>
+            <p>Вернуть <b>Excel</b> с выбранным зданием, этажом, аудиторией и датой, выгруженную через pandas в excel - <b>'/parse_to_excel'</b></p>
+            <p>Пример <a href="https://kurstestspelevova.herokuapp.com/parse_to_excel?&building=1&floor=4&audience=1-409&date=17.12.2019">https://kurstestspelevova.herokuapp.com/parse_to_excel?&building=1&floor=4&audience=1-409&date=17.12.2019</a></p>
+            <p>Возвращает всегда файл <b>test.xlsx</b></p>
+        </li>
+        <li>
+            <p>Вернуть распарсенный <b>json</b> с выбранным зданием, этажом, аудиторией и датой, выгруженную через pandas в json - <b>'/parse_to_json'</b></p>
+            <p>Пример <a href="https://kurstestspelevova.herokuapp.com/parse_to_json?&building=1&floor=4&audience=1-409&date=17.12.2019">https://kurstestspelevova.herokuapp.com/parse_to_json?&building=1&floor=4&audience=1-409&date=17.12.2019</a></p>
+            <p>Может выглядеть не корректно в браузерах на первый взгляд, но это<br/> <b>Самый распространенный формат общения клиента с сервером</b></p>
+        </li>
+    </ul>
+    <h2>
+        Возможные ошибки при работе:
+    </h2>
+    <ul>
+        <li>
+            <p>Приложение может вернуть ошибку "* arg dont passed"<br/> это значит забыли прописать какой-то из аргументов</p>
+        </li>
+        <li>
+            <p>Приложение может вертуть ошибку "table with id schedule is not found,\n check your args or try again"<br/>
+                Это может значит либо то, что аргументы введены не правильно, и расписание выдано пустое, либо просто почему-то не выдалась страница, и надо попробовать ещё раз.
+            </p>
+        </li>
+    </ul>
+</body>
+</html>

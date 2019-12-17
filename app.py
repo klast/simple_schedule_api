@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, jsonify
+from flask import Flask, request, send_file, jsonify, render_template
 from selenium import webdriver
 import pandas
 from bs4 import BeautifulSoup
@@ -99,6 +99,11 @@ def parse_to_pandas(building, floor, audience, date, base_url):
 
 
 @app.route('/')
+def main_func():
+    return render_template('index.html')
+
+
+@app.route('/schedule')
 def hello_world():
     p_building = request.args.get('building')
     p_floor = request.args.get('floor')
