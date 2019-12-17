@@ -32,8 +32,8 @@ def parse_to_pandas(building, floor, audience, date, base_url):
     soup = BeautifulSoup(page.text, 'lxml')
     # нахожу таблицу с id = 'schedule'
     test = soup.find('table', id='schedule')
-    if test is None:
-        raise Exception("table with id schedule is not found,\n check your args or try again")
+    #if test.text is None:
+    #    raise Exception("table with id schedule is not found,\n check your args or try again")
 
     # для того чтобы взять день недели, 1 строка таблицы
     row_index = 0
