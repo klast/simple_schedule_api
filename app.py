@@ -104,12 +104,7 @@ def main_func():
     return render_template('index.html')
 
 
-@app.route('/schedule')
-def hello_world():
-    p_building = request.args.get('building')
-    p_floor = request.args.get('floor')
-    p_audience = request.args.get('audience')
-    p_date = request.args.get('date')
+def simulate_pushing_buttons(p_building, p_floor, p_audience, p_date):
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--disable-gpu')
     chrome_options.add_argument('--no-sandbox')
@@ -138,6 +133,27 @@ def hello_world():
     result = browser.page_source
     browser.close()
     return result
+
+
+@app.route('/schedule')
+def hello_world():
+    p_building = request.args.get('building')
+    p_floor = request.args.get('floor')
+    p_audience = request.args.get('audience')
+    p_date = request.args.get('date')
+    try:
+        if p_building is None:
+            raise TypeError("building arg dont passed")
+        if p_floor is None:
+            raise TypeError("floor arg dont passed")
+        if p_audience is None:
+            raise TypeError("audience dont passed")
+        if p_date is None:
+            raise TypeError("date dont passed in format dd.mm.yyyy")
+        result = simulate_pushing_buttons(p_building, p_floor, p_audience, p_date)
+        return result
+    except TypeError as error:
+        return str(traceback.format_exc())
 
 
 @app.route('/parse_to_table')
