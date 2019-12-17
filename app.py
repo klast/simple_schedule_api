@@ -5,6 +5,7 @@ from bs4 import BeautifulSoup
 import requests
 import io
 import traceback
+import time
 
 GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
@@ -118,14 +119,20 @@ def hello_world():
     browser.get('https://lk.ugatu.su/audience')
     building = browser.find_element_by_id('id_building')
     building.send_keys(p_building)
+    time.sleep(0.2)
     floor = browser.find_element_by_id('id_floor')
     floor.send_keys(p_floor)
+    time.sleep(0.2)
     audit = browser.find_element_by_id('id_audience')
     audit.send_keys(p_audience)
+    time.sleep(0.2)
     tmp = browser.find_element_by_xpath("//ul[@id='id_ScheduleType']/li[3]")
     tmp.click()
+    time.sleep(0.2)
     date = browser.find_element_by_name('date')
+    date.clear()
     date.send_keys(p_date)
+    time.sleep(0.2)
     but = browser.find_element_by_name('view')
     but.click()
     result = browser.page_source
